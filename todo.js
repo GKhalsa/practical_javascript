@@ -55,10 +55,21 @@ var todoList = {
   }
 };
 
+var displayTodosButton = document.getElementById('displayTodosButton');
+var toggleAllButton = document.getElementById('toggleAllButton');
+
+displayTodosButton.addEventListener('click', function(){
+  todoList.displayTodo();
+})
+
+toggleAllButton.addEventListener('click',function(){
+  todoList.toggleAll();
+})
+
 
 console.log(todoList.addTodo('hello'));
-console.log(todoList.toggleAll());
-console.log(todoList.toggleAll());
+// console.log(todoList.toggleAll());
+// console.log(todoList.toggleAll());
 // console.log(todoList.toggleCompleted(0));
 // console.log(todoList.addTodo('goodbye'));
 // console.log(todoList.changeTodo(0,'goodbye'));
