@@ -33,12 +33,32 @@ var todoList = {
     var todo = this.todos[position];
     todo.completed = !todo.completed;
     this.displayTodo();
+  },
+  toggleAll: function(){
+    var totalTodos = this.todos.length;
+    var completedTodos = 0;
+    for (var i = 0; i < this.todos.length; i++){
+      if(this.todos[i].completed){
+        completedTodos ++;
+      }
+    }
+    if(totalTodos === completedTodos){
+      for(var i = 0; i < totalTodos; i++){
+        this.todos[i].completed = false
+      }
+    } else {
+      for(var i = 0; i < totalTodos; i++){
+        this.todos[i].completed = true
+      }
+    }
+    this.displayTodo();
   }
 };
 
 
-// console.log(todoList.displayTodo());
 console.log(todoList.addTodo('hello'));
-console.log(todoList.toggleCompleted(0));
+console.log(todoList.toggleAll());
+console.log(todoList.toggleAll());
+// console.log(todoList.toggleCompleted(0));
 // console.log(todoList.addTodo('goodbye'));
 // console.log(todoList.changeTodo(0,'goodbye'));
