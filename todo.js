@@ -25,8 +25,8 @@ var todoList = {
     this.todos[position].todoText = todoText;
     this.displayTodo();
   },
-  deleteTodo: function(position, count){
-    this.todos.splice(position, count);
+  deleteTodo: function(position){
+    this.todos.splice(position, 1);
     this.displayTodo();
   },
   toggleCompleted: function(position){
@@ -61,13 +61,25 @@ var handlers = {
   },
   toggleAll: function() {
     todoList.toggleAll();
+  },
+  addTodo: function() {
+    var todoText = document.getElementById('addTodoTextInput');
+    todoList.addTodo(todoText.value);
+    todoText.value = '';
+  },
+  changeTodo: function() {
+    var position = document.getElementById('changeTodoPosition');
+    var newText = document.getElementById('changeTodoText');
+    todoList.changeTodo(position.valueAsNumber, newText.value);
+    newText.value = '';
+    position.value = '';
+  },
+  deleteTodo: function() {
+    var position = document.getElementById('deleteTodoPosition');
+    todoList.deleteTodo(position.valueAsNumber);
+  },
+  toggleCompleted: function(){
+    var position = document.getElementById('toggleCompletedPosition');
+    todoList.toggleCompleted(position.valueAsNumber);
   }
 }
-
-
-console.log(todoList.addTodo('hello'));
-// console.log(todoList.toggleAll());
-// console.log(todoList.toggleAll());
-// console.log(todoList.toggleCompleted(0));
-// console.log(todoList.addTodo('goodbye'));
-// console.log(todoList.changeTodo(0,'goodbye'));
