@@ -55,16 +55,14 @@ var todoList = {
   }
 };
 
-var displayTodosButton = document.getElementById('displayTodosButton');
-var toggleAllButton = document.getElementById('toggleAllButton');
-
-displayTodosButton.addEventListener('click', function(){
-  todoList.displayTodo();
-})
-
-toggleAllButton.addEventListener('click',function(){
-  todoList.toggleAll();
-})
+var handlers = {
+  displayTodo: function() {
+    todoList.displayTodo();
+  },
+  toggleAll: function() {
+    todoList.toggleAll();
+  }
+}
 
 
 console.log(todoList.addTodo('hello'));
