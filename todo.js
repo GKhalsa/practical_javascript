@@ -58,9 +58,8 @@ var handlers = {
     position.value = '';
     view.displayTodo();
   },
-  deleteTodo: function() {
-    var position = document.getElementById('deleteTodoPosition');
-    todoList.deleteTodo(position.valueAsNumber);
+  deleteTodo: function(position) {
+    todoList.deleteTodo(position);
     view.displayTodo();
   },
   toggleCompleted: function(){
@@ -80,13 +79,34 @@ var view = {
       var todoTextWithCompletion = '';
 
       if(todo.completed){
-        todoTextWithCompletion = '(x) ' + todo.todoText
+        todoTextWithCompletion = '(x) ' + todo.todoText;
       } else {
-        todoTextWithCompletion = '() ' + todo.todoText
+        todoTextWithCompletion = '() ' + todo.todoText;
       }
 
+      todoLi.id = i;
       todoLi.textContent = todoTextWithCompletion;
+      todoLi.appendChild(this.createDeleteButton());
       todosUl.appendChild(todoLi);
     }
+  },
+  createDeleteButton: function(){
+    var deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.className = 'deleteButton';
+    return deleteButton;
+  },
+  setupEventListeners: function(){
+    var todosUl = document.querySelector('ul');
+    todosUl.addEventListener('click',function(event){
+      // console.log(event.target.parentNode.id);
+      var elementClicked = event.target;
+
+      if (elementClicked.className === 'deleteButton'){
+        handlers.deleteTodo(parseInt(elementClicked.parentNode.id));
+      }
+    });
   }
 };
+
+view.setupEventListeners();
